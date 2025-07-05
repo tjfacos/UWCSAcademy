@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"image": "docker build -t academy-webapp:latest . && docker run --env-file .env -p 5173:3000 academy-webapp:latest"
+		"image": "docker build -t academy-webapp:latest . && docker run --env-file .env -p 5173:4173 academy-webapp:latest"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",

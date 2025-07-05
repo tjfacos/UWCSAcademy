@@ -3,8 +3,8 @@ FROM node:24-alpine3.22 AS builder
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 3000
+EXPOSE 4173
 
-CMD [ "node", "build/index.js" ]
+CMD [ "npm", "run", "preview", "--", "--host" ]

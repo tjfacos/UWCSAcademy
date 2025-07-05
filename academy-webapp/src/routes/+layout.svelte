@@ -34,7 +34,7 @@
 </head>
 
 {#if page.data.session == null && page.url.pathname != "/"}
-    <div class="min-h-screen flex flex-col justify-between bg-[url(img/bg-particles.png)]"></div>
+    <div class="min-h-screen flex flex-col justify-between bg-[url(/bg-particles.png)]"></div>
 {:else}
     <div id="contents" class="dark montserrat-normal dark:bg-gray-900">
         <LightDarkBtn />
