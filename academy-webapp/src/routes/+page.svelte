@@ -1,5 +1,5 @@
 <script>
-  import UwcsLogo from "$lib/UWCSLogo.svelte";
+  import UwcsLogo from "$lib/components/UWCSLogo.svelte";
 
   import { signIn, signOut } from "@auth/sveltekit/client";
   import { page } from "$app/state";

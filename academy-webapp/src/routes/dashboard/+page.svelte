@@ -1,8 +1,8 @@
 <script>
     import Courses from "./courses.svelte";
     import Comps from "./comps.svelte";
-    import ProfileBtn from "$lib/profile-btn.svelte";
-    import SignoutBtn from "$lib/signout-btn.svelte";
+    import ProfileBtn from "$lib/components/profile-btn.svelte";
+    import SignoutBtn from "$lib/components/signout-btn.svelte";
 
     import { page } from "$app/stores";
 
