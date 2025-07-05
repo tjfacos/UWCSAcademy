@@ -1,0 +1,12 @@
+{
+    "display_name": "Lesson 1: The Basics",
+    "hidden": true,
+    "interactive": true,
+    "content": "lesson.md",
+    "testcases": [
+        {
+            "input": "3",
+            "output": "9"
+        }
+    ]
+}
