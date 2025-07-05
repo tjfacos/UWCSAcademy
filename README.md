@@ -21,6 +21,7 @@
 * **THOUGHT**: There should be a process in a separate thread that regularly checks the directory, and updates the database to ensure everything's consistent
 * **THOUGHT-THOUGHT**: Re-structure to the project to be...
 
+```
 uwcs-academy
 |
 |--- compose.yml (includes the webapp, all services, and a DB)
@@ -36,5 +37,6 @@ uwcs-academy
 |--- services
         |
         |--- update_content
+```
 
 **services** will be a series of Python background tasks, that update the database (and maybe send messages to the webapp when needed)
