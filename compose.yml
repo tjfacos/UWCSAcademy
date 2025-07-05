@@ -1,12 +1,19 @@
 services:
-  web:
+  webapp:
     build: ./academy-webapp
     ports:
-      - "5173:5000"
-    develop:
-      watch:
-        - action: sync
-          path: .
-          target: /code
-  redis:
-    image: "redis:alpine"
+      - "5173:4173"
+    env_file: "webapp.env"
+    depends_on:
+      - db
+  db:
+    image: "postgres:17.5"
+    restart: always
+    env_file: "db.env"
+  adminer:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
