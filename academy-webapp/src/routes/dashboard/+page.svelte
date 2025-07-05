@@ -17,7 +17,7 @@
     <title>Dashboard - UWCS Academy</title>
 </svelte:head>
 
-<div class="min-h-screen px-50 py-10 bg-[url(img/bg-particles.png)]">
+<div class="min-h-screen px-50 py-10 bg-[url('/bg-particles.png')]">
     <ProfileBtn
         firstname={firstname}
         lastname={lastname}

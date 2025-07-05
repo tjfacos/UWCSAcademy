@@ -9,5 +9,6 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
             clientSecret: AUTH_KEYCLOAK_SECRET,
             issuer: AUTH_KEYCLOAK_ISSUER,
         })
-    ]
+    ],
+    trustHost: true
 })
