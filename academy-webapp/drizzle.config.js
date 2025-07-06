@@ -6,6 +6,6 @@ export default defineConfig({
   schema: './src/db/schema.js',
   dialect: 'postgresql',
   dbCredentials: {
-    url: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:5432/${process.env.POSTGRES_DB}`,
-  },
+    url: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@db:5432/${process.env.POSTGRES_DB}`
+  }
 });
