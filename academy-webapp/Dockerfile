@@ -8,9 +8,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-# Prep database
-RUN npx drizzle-kit push
-
 # Run app
 EXPOSE 4173
-CMD [ "npm", "run", "preview", "--", "--host" ]
+CMD [ "npm", "run", "container" ]
