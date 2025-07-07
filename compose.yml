@@ -6,6 +6,8 @@ services:
     env_file: "config/.env"
     depends_on:
       - db
+    volumes:
+      - ./config:/app/config
   update_content:
     build: ./services/update_content
     volumes:
@@ -13,6 +15,10 @@ services:
     env_file: "config/.env"
     depends_on:
       - db
+    ports:
+      - "33001:33001"
+    stop_grace_period: "5s"
+
   db:
     image: "postgres:17.5"
     restart: always
