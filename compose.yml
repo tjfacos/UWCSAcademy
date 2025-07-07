@@ -6,6 +6,13 @@ services:
     env_file: "config/.env"
     depends_on:
       - db
+  update_content:
+    build: ./services/update_content
+    volumes:
+      - ./content:/app/content:ro
+    env_file: "config/.env"
+    depends_on:
+      - db
   db:
     image: "postgres:17.5"
     restart: always
