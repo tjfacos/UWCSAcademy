@@ -6,6 +6,8 @@
 
     import { page } from "$app/stores";
 
+    let { data } = $props();
+
     const fullname  = $page.data.session.user.name;
     const firstname = fullname.split(" ")[0];
     const lastname  = fullname.substring(firstname.length + 1);
@@ -42,7 +44,7 @@
         Courses
     </h1>
 
-    <Courses />
+    <Courses courses={data.courses} />
 
     <h1
         class="font-black text-6xl dark:text-white w-full mt-20 pt-5 border-t-10 border-blue-700 dark:border-yellow-300"
