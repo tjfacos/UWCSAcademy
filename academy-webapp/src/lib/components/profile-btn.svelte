@@ -5,12 +5,12 @@
 
 <!-- Position the button in the top-left corner -->
 <div class="fixed top-4 left-4 z-50">
-    <a href="/settings"><button 
+    <a href="/account"><button 
         aria-label="View Profile" 
-        class="p-5 rounded-full bg-red-300 shadow-lg
-        hover:shadow-xl transition-all duration-300 hover:scale-110 
-        border border-gray-200 dark:border-gray-600 font-bold text-lg 
-        dark:bg-yellow-300"
+        class="w-16 h-16 flex items-center justify-center rounded-full text-white dark:text-black bg-blue-700 
+        dark:bg-yellow-300 shadow-lg hover:shadow-xl transition-all 
+        duration-300 hover:scale-110 border border-gray-200 
+        dark:border-gray-600 font-bold text-lg"
     onmouseenter={() => showInfo = true}
     onmouseleave={() => showInfo = false}
     style="position: relative;"
