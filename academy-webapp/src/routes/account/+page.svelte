@@ -8,6 +8,8 @@
 
     const fullname = $page.data.session.user.name;
     const email = $page.data.session.user.email;
+
+    console.log(data.usr)
 </script>
 
 <svelte:head>
@@ -28,7 +30,7 @@
         {email}
     </h2>
 
-    {#if data.is_super }
+    {#if data.usr.is_super }
         <h2 class="font-semibold text-3xl text-gray-700 dark:text-gray-300 w-full mb-10">ADMIN FUNCTIONS</h2>
     {/if}
 </div>

@@ -1,9 +1,15 @@
 import { getUser } from "$lib/db/database.server";
-import { page } from "$app/stores";
+import { redirect } from "@sveltejs/kit";
 
-export async function load({ page }) {
-    const usr = getUser(page.data.session.user.email)
-    const is_super = usr != undefined && usr.is_super
+export async function load({ parent }) {
 
-    return { is_super }
+    const { session } = await parent();
+    
+    if (!session.user)
+        throw redirect(308, "/")
+    
+    const usr = await getUser(session.user.email)
+
+    return { usr }
+
 }
