@@ -1,7 +1,9 @@
 import { getUser, getSuperUsers } from "$lib/db/database.server";
-import { redirect } from "@sveltejs/kit";
+import { error, redirect } from "@sveltejs/kit";
 import { addSuper, removeSuper } from '$lib/db/database.server.js';
+import axios from "axios";
 
+var usr;
 
 export async function load({ parent }) {
 
@@ -10,7 +12,7 @@ export async function load({ parent }) {
     if (!session.user)
         throw redirect(308, "/")
     
-    const usr = await getUser(session.user.email)
+    usr = await getUser(session.user.email)
     const _super = usr.is_super
 
     let admin_data = {}
@@ -29,14 +31,29 @@ export async function load({ parent }) {
 
 export const actions = {
     addSuper: async ({ request }) => {
+        if (!usr.is_super) return error(401)
+
         const email = (await request.formData()).get("email")
         console.log("ADDING SUPER USER: " + email)
         await addSuper(email)
     },
 
     removeSuper: async ({ request }) => {
+        if (!usr.is_super) return error(401)
+        
         const email = (await request.formData()).get("email")
         console.log("REMOVING SUPER USER: " + email)
         await removeSuper(email)
     },
+
+    update: async () => {
+        if (!usr.is_super) return error(401)
+
+        console.log("UPDATING CONTENT")
+        await axios
+            .get(`http://update_content:${process.env.CONTENT_SERVICE_PORT}/update`)
+            .then(() => {
+                console.log("UPDATE REQUEST HANDLED")
+            })
+    }
 };

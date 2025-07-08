@@ -6,7 +6,7 @@ COPY . .
 
 # Build app
 RUN npm install
-RUN npm run build
+# RUN npm run build
 
 # Run app
 EXPOSE 4173

@@ -9,14 +9,14 @@ services:
       - db
     volumes:
       - ./config:/app/config
-  # update_content:
-  #   build: ./services/update_content
-  #   volumes:
-  #     - ./content:/app/content:ro
-  #   env_file: "config/.env"
-  #   depends_on:
-  #     - db
-  #   stop_grace_period: "5s"
+  update_content:
+    build: ./services/update_content
+    volumes:
+      - ./content:/app/content:ro
+    env_file: "config/.env"
+    depends_on:
+      - db
+    stop_grace_period: "5s"
 
   db:
     image: "postgres:17.5"

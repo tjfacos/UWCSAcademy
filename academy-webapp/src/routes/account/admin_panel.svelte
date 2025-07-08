@@ -12,7 +12,7 @@
 <!-- List of Admin Users -->
 
 <div>
-    <h3 class="text-xl font-bold mb-2 text-white">Super Users</h3>
+    <h3 class="text-xl font-bold mb-2 dark:text-white">Super Users</h3>
     <table
         class="table-auto w-full border-collapse rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-800"
     >
@@ -30,14 +30,17 @@
                     class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                     <td
-                        class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 text-white font-medium text-lg"
+                        class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 dark:text-white font-medium text-lg"
                         >{usr_email}</td
                     >
                 </tr>
             {/each}
         </tbody>
     </table>
-    <form method="post" class="flex flex-col md:flex-row items-center gap-4 mt-8 bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md w-full max-w-xl mx-auto">
+    <form
+        method="post"
+        class="flex flex-col md:flex-row items-center gap-4 mt-8 bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-md w-full max-w-xl mx-auto"
+    >
         <input
             name="email"
             type="email"
@@ -48,11 +51,53 @@
             formaction="?/addSuper"
             type="submit"
             class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded shadow transition"
-        >Add</button>
+            >Add</button
+        >
         <button
             formaction="?/removeSuper"
             type="submit"
             class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow transition"
-        >Remove</button>
+            >Remove</button
+        >
     </form>
+
+    <!-- Function Buttons -->
+    <h3 class="text-xl font-bold mb-2 dark:text-white">Functions & Services</h3>
+    <div>
+        <table
+            class="table-auto w-full border-collapse rounded-lg overflow-hidden shadow-lg bg-white dark:bg-gray-800"
+        >
+            <thead class="bg-gray-200 dark:bg-gray-700">
+                <tr>
+                    <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider border-b"
+                        >Function</th
+                    >
+                    <th
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider border-b"
+                    ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                    <td
+                        class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 dark:text-white font-medium text-lg"
+                        >Update Content</td
+                    >
+                    <td>
+                        <form method="post">
+                            <button
+                                formaction="?/update"
+                                type="submit"
+                                class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded shadow transition"
+                                >Execute</button
+                            >
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
