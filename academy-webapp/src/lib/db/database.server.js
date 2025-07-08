@@ -7,9 +7,7 @@ import { eq, and } from "drizzle-orm"
 const db_url = `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@db:5432/${process.env.POSTGRES_DB}`
 const db = drizzle(db_url);
 
-export async function getAllCourses() {
-    return await db.select().from(courses_tbl);
-}
+/* ========================================== USER ========================================== */
 
 export async function getUser(email) {
     let user = await db
@@ -53,4 +51,19 @@ export async function removeSuper(email) {
         .update(users_tbl)
         .set({is_super: false})
         .where(eq(users_tbl.email, email))
+}
+
+
+/* ========================================= COURSE ========================================= */
+
+export async function getAllCourses() {
+    return await db.select().from(courses_tbl);
+}
+
+export async function getCourse(id) {
+    let course = await db
+        .select()
+        .from(courses_tbl)
+        .where(eq(courses_tbl.id, id))
+    return course.at(0)
 }

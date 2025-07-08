@@ -1,6 +1,5 @@
-import { getUser, getSuperUsers } from "$lib/db/database.server";
+import { getUser, getSuperUsers, addSuper, removeSuper } from "$lib/db/database.server";
 import { error, redirect } from "@sveltejs/kit";
-import { addSuper, removeSuper } from '$lib/db/database.server.js';
 import axios from "axios";
 
 var usr;
