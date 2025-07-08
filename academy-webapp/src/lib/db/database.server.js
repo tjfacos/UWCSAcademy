@@ -20,3 +20,37 @@ export async function getUser(email) {
         )
     return user.at(0)
 }
+
+export async function getSuperUsers() {
+    return await db
+        .select({email: users_tbl.email})
+        .from(users_tbl)
+        .where(eq(users_tbl.is_super, true))
+}
+
+export async function addSuper(email) {
+    const usr = await getUser(email)
+    console.log(usr)
+    if (usr != undefined) {
+        console.log("User exists")
+        await db
+            .update(users_tbl)
+            .set({is_super: true})
+            .where(eq(users_tbl.email, email))
+    } else {
+        console.log("User does not exist")
+        await db
+            .insert(users_tbl)
+            .values({
+                email: email,
+                is_super: true
+            })
+    }
+}
+
+export async function removeSuper(email) {
+    await db
+        .update(users_tbl)
+        .set({is_super: false})
+        .where(eq(users_tbl.email, email))
+}

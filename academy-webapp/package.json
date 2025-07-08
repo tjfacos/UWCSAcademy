@@ -9,7 +9,9 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"image": "docker build -t academy-webapp:latest . && docker run --env-file .env -p 5173:4173 academy-webapp:latest",
-		"container": "npx drizzle-kit push && vite preview --host"
+		"container": "npx drizzle-kit push && vite preview --host",
+		"devcontainer": "npx drizzle-kit push && vite dev --host",
+		"migrate": "npx drizzle-kit push --force"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^6.0.0",

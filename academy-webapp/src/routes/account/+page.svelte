@@ -1,15 +1,15 @@
 <script>
     import SignoutBtn from "$lib/components/signout-btn.svelte";
+    import BackBtn from "$lib/components/back-btn.svelte";
+    import AdminPanel from "./admin_panel.svelte";
 
     import { page } from "$app/stores";
-    import BackBtn from "$lib/components/back-btn.svelte";
 
     let { data } = $props();
 
     const fullname = $page.data.session.user.name;
     const email = $page.data.session.user.email;
 
-    console.log(data.usr)
 </script>
 
 <svelte:head>
@@ -30,7 +30,7 @@
         {email}
     </h2>
 
-    {#if data.usr.is_super }
-        <h2 class="font-semibold text-3xl text-gray-700 dark:text-gray-300 w-full mb-10">ADMIN FUNCTIONS</h2>
+    {#if data._super }
+        <AdminPanel data={ data.admin_data }/>
     {/if}
 </div>

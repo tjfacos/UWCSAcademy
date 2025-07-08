@@ -10,4 +10,6 @@ RUN npm run build
 
 # Run app
 EXPOSE 4173
-CMD [ "npm", "run", "container" ]
+CMD [ "npm", "run", "devcontainer" ]
+# CMD [ "npm", "run", "container" ]
+# CMD [ "npm", "run", "migrate" ]
