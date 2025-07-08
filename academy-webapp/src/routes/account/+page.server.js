@@ -14,15 +14,14 @@ export async function load({ parent }) {
     usr = await getUser(session.user.email)
     const _super = usr.is_super
 
+    console.log(usr)
+
     let admin_data = {}
     if (_super) {
         admin_data = {
             "super_users" : (await getSuperUsers()).map((x) => x["email"])
         }
     }
-
-    console.log("ADMIN DATA")
-    console.log(admin_data)
 
     return { _super, admin_data }
 
