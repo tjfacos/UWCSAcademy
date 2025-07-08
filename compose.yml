@@ -6,7 +6,7 @@ services:
     ports:
       # - "5173:4173"
       - "5173:5173"
-    env_file: "config/.env"
+    env_file: ".env"
     depends_on:
       - db
     volumes:
@@ -17,7 +17,7 @@ services:
     build: ./services/update_content
     volumes:
       - ./content:/app/content:ro
-    env_file: "config/.env"
+    env_file: ".env"
     depends_on:
       - db
     stop_grace_period: "5s"
@@ -34,7 +34,7 @@ services:
   db:
     image: "postgres:17.5"
     restart: always
-    env_file: "config/.env"
+    env_file: ".env"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
