@@ -22,7 +22,7 @@ services:
   update_content:
     build: ./services/update_content
     volumes:
-      - ./content:/app/content:ro
+      - ./content:/app/content:rw
     env_file: ".env"
     depends_on:
       - db

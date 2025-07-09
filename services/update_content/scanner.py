@@ -4,6 +4,7 @@ from pathlib import Path
 
 import psycopg2
 import json
+from markdown_it import MarkdownIt
 
 class Scanner:
     def __init__(self) -> None:
@@ -11,6 +12,7 @@ class Scanner:
         self.comps_path     = Path(".", "content", "comps"  )
         self.db             = psycopg2.connect(database=os.environ["POSTGRES_DB"], user=os.environ["POSTGRES_USER"], password=os.environ["POSTGRES_PASSWORD"], host="db", port=5432)
         self.curr           = self.db.cursor()
+        self.md             = MarkdownIt()
     
     def getCourses(self):
         return [x.name for x in self.courses_path.iterdir() if x.is_dir()]
@@ -98,6 +100,25 @@ class Scanner:
         lesson_path = self.courses_path.joinpath(course, lesson)
         print(f"Accessing {lesson_path} ...")
         
+        # Remove existing html files
+        print(f"Removing .html files...")
+        for page in lesson_path.glob('*.html'):
+            print(f"-> {page}")
+            lesson_path.joinpath(page).unlink()
+        
+        # Generate new html files
+        print("Generating new .html files...")
+        for page in lesson_path.glob('*.md'):
+            # Read markdown
+            html = self.md.render(page.read_text())
+            # Write html
+            with open(str(page) + ".html", "w") as f:
+                f.write(html)
+            
+            print(f"-> {page} --> {str(page) + ".html"}")
+
+            
+
         # Open config.json
         lesson_config = None
         with open(lesson_path.joinpath("config.json")) as f:
