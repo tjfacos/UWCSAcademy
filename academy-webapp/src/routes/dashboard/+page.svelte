@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-    <title>Dashboard - UWCS Academy</title>
+    <title>Dashboard | UWCS Academy</title>
 </svelte:head>
 
 <div class="min-h-screen px-50 py-10 bg-[url('/bg-particles.png')]">

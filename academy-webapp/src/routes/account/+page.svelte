@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-    <title>{fullname} - UWCS Academy</title>
+    <title>{fullname} | UWCS Academy</title>
 </svelte:head>
 
 <div class="min-h-screen px-50 py-10 bg-[url('/bg-particles.png')]">

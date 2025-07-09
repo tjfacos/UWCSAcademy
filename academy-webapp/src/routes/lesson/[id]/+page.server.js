@@ -1,4 +1,5 @@
 import { getCourse, getLesson } from "$lib/db/database.server";
+import { getCourseFiles } from "$lib/assets/files.server.js";
 
 export async function load({ parent, params }) {
 
@@ -15,6 +16,10 @@ export async function load({ parent, params }) {
 
     const course = await getCourse(lesson.course)
 
-    return { lesson, course }
+    let content = {
+        "main-body": await getCourseFiles(`${course.directory}/${lesson.directory}/${lesson.markdown}.html`)
+    }
+
+    return { lesson, course, content }
     
 }

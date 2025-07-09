@@ -1,0 +1,15 @@
+<script>
+    let { course, lesson, content } = $props()
+</script>
+
+<h2
+    class="font-semibold text-4xl text-gray-700 dark:text-gray-300 w-full mt-10 mb-5"
+>
+    {course.title}
+</h2>
+
+<h1 class="font-black text-8xl w-full mb-5 dark:text-white">
+    {lesson.title}
+</h1>
+
+<div id="lesson-content"></div>
