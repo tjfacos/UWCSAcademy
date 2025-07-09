@@ -12,7 +12,7 @@ class Scanner:
         self.comps_path     = Path(".", "content", "comps"  )
         self.db             = psycopg2.connect(database=os.environ["POSTGRES_DB"], user=os.environ["POSTGRES_USER"], password=os.environ["POSTGRES_PASSWORD"], host="db", port=5432)
         self.curr           = self.db.cursor()
-        self.md             = MarkdownIt()
+        self.md             = MarkdownIt(config="gfm-like")
     
     def getCourses(self):
         return [x.name for x in self.courses_path.iterdir() if x.is_dir()]

@@ -166,13 +166,67 @@ int main(){
 <p>Output: <code>The Time - 11 : 23 : 59</code></p>
 <p>What did I mean by &quot;different displays of values&quot;? To explain, I will introduce the <strong>char</strong> which is a smaller int data type, with a tiny range of possible values (-128 to +127), that is typically used to represent characters using ASCII rather than to represent integers.</p>
 <p>For those who don't know, ASCII is a standard encoding of integers to commonly used characters. To show a few:</p>
-<p>| Integer | 65 | 66 | 67 | 97 | 98 | 99 | 33 | 35 |
-|---------|----|----|----|----|----|----|----|----|
-| Character | A | B | C | a | b | c | ! | # |</p>
+<table>
+<thead>
+<tr>
+<th>Integer</th>
+<th>65</th>
+<th>66</th>
+<th>67</th>
+<th>97</th>
+<th>98</th>
+<th>99</th>
+<th>33</th>
+<th>35</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Character</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>!</td>
+<td>#</td>
+</tr>
+</tbody>
+</table>
 <p>Of course the digits must be encoded too; they're encoded by the numbers 48-57.</p>
-<p>| Integer | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 |
-|---------|----|----|----|----|----|----|----|----|----|----|
-| Character | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |</p>
+<table>
+<thead>
+<tr>
+<th>Integer</th>
+<th>48</th>
+<th>49</th>
+<th>50</th>
+<th>51</th>
+<th>52</th>
+<th>53</th>
+<th>54</th>
+<th>55</th>
+<th>56</th>
+<th>57</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Character</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
 <p>So a char can be displayed as a number using <code>%d</code>, but also as a character using <code>%c</code>.</p>
 <pre><code class="language-c">char a = 101;
 printf(&quot;%c : %d&quot;, a, a);
@@ -260,13 +314,42 @@ int main(){
 <p>For most use cases, the size taken up by an integer is negligible so most people tend to default to an int in a place where a short would be perfectly fine. This only really matters in situations where space is very valuable such as small embedded systems or storing a lot of integers. In fact, it can be beneficial to use an int as your future uses may require a larger range and arithmetic can actually be faster (although usually negligibly) if your machine's native size is 32-bit or 64-bit.</p>
 <p>Despite the idea of C being a portable language, the size (and range) of integer types are machine-dependent; therefore, the C standard only specifies the minimum number of bytes for each type.</p>
 <p>For instance, the minimum number of bytes for an int is 2 however most modern machines use 4.</p>
-<p>| Type | (Minimum) number of bytes | (Minimum) range of values |
-|------|---------------------------|---------------------------|
-| char | 1 | -128 to +127 |
-| short (aka short int) | 2 | -32768 to +32767 |
-| int | 2 | -32768 to +32767 |
-| long (aka long int) | 4 | -2147483648 to +2147483647 |
-| long long (aka long long int) | 8 | -2^63 to +2^63 - 1 |</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>(Minimum) number of bytes</th>
+<th>(Minimum) range of values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+<td>-128 to +127</td>
+</tr>
+<tr>
+<td>short (aka short int)</td>
+<td>2</td>
+<td>-32768 to +32767</td>
+</tr>
+<tr>
+<td>int</td>
+<td>2</td>
+<td>-32768 to +32767</td>
+</tr>
+<tr>
+<td>long (aka long int)</td>
+<td>4</td>
+<td>-2147483648 to +2147483647</td>
+</tr>
+<tr>
+<td>long long (aka long long int)</td>
+<td>8</td>
+<td>-2^63 to +2^63 - 1</td>
+</tr>
+</tbody>
+</table>
 <p>The longs even come with their own format specifiers: <code>%ld</code> (for long) and <code>%lld</code> (for long long).</p>
 <h3>Integer Type Exercise: Outputting the size of types</h3>
 <ol>
@@ -305,14 +388,47 @@ printf(&quot;%d\n&quot;, beyondTypicalRange); // 1
 <p>The range for a typical signed char is -128 to +127 whereas the unsigned char is from 0 to +255.</p>
 <h2>What if I want a guaranteed size?</h2>
 <p>If the exact size of the int is crucial, you can use the stdint (<code>&lt;stdint.h&gt;</code>) library.</p>
-<p>| Type | Number of bytes | Range of values |
-|------|-----------------|-----------------|
-| int8_t | 1 | -2^7 to 2^7 - 1 |
-| int16_t | 2 | -2^15 to 2^15 - 1 |
-| int32_t | 4 | -2^31 to 2^31 - 1 |
-| uint8_t | 1 | 0 to 2^8 - 1 |
-| uint16_t | 2 | 0 to 2^16 - 1 |
-| uint32_t | 4 | 0 to 2^32 - 1 |</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Number of bytes</th>
+<th>Range of values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int8_t</td>
+<td>1</td>
+<td>-2^7 to 2^7 - 1</td>
+</tr>
+<tr>
+<td>int16_t</td>
+<td>2</td>
+<td>-2^15 to 2^15 - 1</td>
+</tr>
+<tr>
+<td>int32_t</td>
+<td>4</td>
+<td>-2^31 to 2^31 - 1</td>
+</tr>
+<tr>
+<td>uint8_t</td>
+<td>1</td>
+<td>0 to 2^8 - 1</td>
+</tr>
+<tr>
+<td>uint16_t</td>
+<td>2</td>
+<td>0 to 2^16 - 1</td>
+</tr>
+<tr>
+<td>uint32_t</td>
+<td>4</td>
+<td>0 to 2^32 - 1</td>
+</tr>
+</tbody>
+</table>
 <p>Most modern implementations also provide int64_t and uint64_t.</p>
 <h3>Integer Exercises</h3>
 <ol>
