@@ -1,3 +1,9 @@
+# Docker Compose configuration for UWCS Academy
+
+# Include judge0
+include:
+  - services/judge0-v1.13.1/docker-compose.yml
+
 services:
 
   # Frontend (/academy-webapp)

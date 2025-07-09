@@ -1,4 +1,4 @@
-import { getCourse } from '$lib/db/database.server';
+import { getCourse, getLessonsByCourseID } from '$lib/db/database.server';
 
 export async function load({ parent, params }) {
 
@@ -7,11 +7,13 @@ export async function load({ parent, params }) {
     if (!session.user)
         throw redirect(308, "/")
     
-    const course = await getCourse(parseInt(params.id))
+    const id        = parseInt(params.id)
+    const course    = await getCourse(id)
+    const lessons   = await getLessonsByCourseID(id)
 
-    if (course.hidden)
+    if (course == null || course.hidden)
         throw redirect(401, "/dashboard")
 
-    return { course }
+    return { course, lessons }
     
 }

@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { courses_tbl } from '../../db/schema/courses';
+import { courses_tbl, lessons_tbl } from '../../db/schema/courses';
 import { users_tbl } from '../../db/schema/users';
 import { eq, and } from "drizzle-orm"
 
@@ -21,7 +21,7 @@ export async function getUser(email) {
 
 export async function getSuperUsers() {
     return await db
-        .select({email: users_tbl.email})
+        .select({ email: users_tbl.email })
         .from(users_tbl)
         .where(eq(users_tbl.is_super, true))
 }
@@ -33,7 +33,7 @@ export async function addSuper(email) {
         console.log("User exists")
         await db
             .update(users_tbl)
-            .set({is_super: true})
+            .set({ is_super: true })
             .where(eq(users_tbl.email, email))
     } else {
         console.log("User does not exist")
@@ -49,7 +49,7 @@ export async function addSuper(email) {
 export async function removeSuper(email) {
     await db
         .update(users_tbl)
-        .set({is_super: false})
+        .set({ is_super: false })
         .where(eq(users_tbl.email, email))
 }
 
@@ -57,13 +57,35 @@ export async function removeSuper(email) {
 /* ========================================= COURSE ========================================= */
 
 export async function getAllCourses() {
-    return await db.select().from(courses_tbl);
+    return await db
+        .select()
+        .from(courses_tbl)
+        .where(eq(courses_tbl.hidden, false));
 }
 
 export async function getCourse(id) {
     let course = await db
         .select()
         .from(courses_tbl)
-        .where(eq(courses_tbl.id, id))
+        .where(
+            and(
+                eq(courses_tbl.id, id), 
+                eq(courses_tbl.hidden, false)
+            )
+        )
     return course.at(0)
+}
+
+/* ========================================= LESSONS ========================================= */
+
+export async function getLessonsByCourseID(course_id) {
+    return await db
+        .select()
+        .from(lessons_tbl)
+        .where(
+            and(
+                eq(lessons_tbl.course, course_id), 
+                eq(lessons_tbl.hidden, false)
+            )
+        ).orderBy(lessons_tbl.order)
 }

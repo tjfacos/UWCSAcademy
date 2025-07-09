@@ -1,6 +1,7 @@
 <script>
     import SignoutBtn from "$lib/components/signout-btn.svelte";
     import BackBtn from "$lib/components/back-btn.svelte";
+    import Lesson from "./lesson.svelte";
 
     import { page } from "$app/stores";
 
@@ -23,7 +24,7 @@
         </h2>
 
         <div
-            class="w-full rounded-xl p-6 text-white dark:text-black bg-blue-700 dark:bg-yellow-300 mx-auto h-64"
+            class="w-full h-fit rounded-xl p-6 text-white dark:text-black bg-blue-700 dark:bg-yellow-300 mx-auto h-64"
         >
             <h1 class="font-black text-8xl w-full mb-5">
                 {data.course.title}
@@ -33,5 +34,16 @@
                 {data.course.description}
             </p>
         </div>
+    </div>
+
+    <div class="w-full">
+        <h1 class="font-black text-6xl dark:text-white w-full mt-20 mb-10 pt-5 border-t-10 border-red-400">
+            Lessons
+        </h1>
+        <div class="grid grid-cols-1 gap-8">
+        {#each data.lessons as lesson}
+            <Lesson course_id={data.course.id} lesson_id={lesson.id} title={lesson.title} />
+        {/each}
+    </div>
     </div>
 </div>
