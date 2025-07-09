@@ -1,6 +1,6 @@
 <script lang="ts">
     import UwcsLogo from "$lib/components/UWCSLogo.svelte";
-    import LightDarkBtn from "$lib/components/light-dark-btn.svelte";
+    import LightDarkBtn from "$lib/components/light_dark_btn.svelte";
 
     let { children } = $props();
 

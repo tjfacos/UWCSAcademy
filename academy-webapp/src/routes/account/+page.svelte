@@ -1,6 +1,6 @@
 <script>
-    import SignoutBtn from "$lib/components/signout-btn.svelte";
-    import BackBtn from "$lib/components/back-btn.svelte";
+    import SignoutBtn from "$lib/components/signout_btn.svelte";
+    import BackBtn from "$lib/components/back_btn.svelte";
     import AdminPanel from "./admin_panel.svelte";
 
     import { page } from "$app/stores";

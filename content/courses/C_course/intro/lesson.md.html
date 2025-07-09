@@ -1,0 +1,541 @@
+<h1>Session 1 - An Introduction To C</h1>
+<p>The course starts gently by introducing basic programming concepts in C such as variables, types, and loops. If you're an experienced programmer then feel free to skim through these sections to get to the more C-specific parts!</p>
+<p>I would personally recommend doing all the exercises regardless of your level, to ensure that you know the material. At times, my writing can be verbose so please do skim through the content, scan for bold/italicised text, and carefully read content when you cannot do the corresponding exercises.</p>
+<p>Good luck and happy coding!</p>
+<h2>Contents</h2>
+<ul>
+<li>What is C</li>
+<li>Hello World!</li>
+<li>Compiling &amp; Running C Code</li>
+<li>Compiling and Hello World Exercises</li>
+<li>Variable Declaration &amp; Initialisation</li>
+<li>Ints</li>
+<li>Format Specifiers (%d, %s, %c)</li>
+<li>Int, Char, and Format Specifier Exercises</li>
+<li>Comments (and increment operator)</li>
+<li>More Integer Types (char, short, int, long, long long)</li>
+<li>Integer Type Exercise (size of types)</li>
+<li>Underflow/Overflow</li>
+<li>Unsigned Integers</li>
+<li>StdInt Library</li>
+<li>Integer Exercises</li>
+<li>Conditional Logic (If Statements)</li>
+<li>If Statement Exercises</li>
+<li>Floating-Point Types (Decimals)</li>
+<li>Typecasting</li>
+<li>Floating-Point Exercises</li>
+<li>For Loops</li>
+<li>For Loop Exercises</li>
+<li>Arrays</li>
+<li>Array Exercises</li>
+<li>Optional Exercises (for the 2025 version of the course)</li>
+</ul>
+<h2>What is C</h2>
+<p>C is a general purpose programming language that originated as the language for the UNIX Operating System. From its humble beginnings, C has been spread everywhere and it's highly likely that you'll be relying on C code every single day. Everything from airplane flight systems to version-control software like Git to applications you may be using right now relies on C. Even if you're coding something in a different language, it's likely that the interpreter/compiler is written in C and your machine is probably being held together by C and duck-tape.</p>
+<p>C is known for its mix of a high-level and low-level approach; you still get a decent amount of features that you see in languages like Python, but you can still interact pretty closely with the hardware like a low-level language does. Relatedly, it's known for having some pretty hard concepts like pointers and memory management but don't worry - we'll cover these in the course!</p>
+<p>Since it's a small language with minimal features (so you can write ⚡ lightning ⚡ fast code), C does not hold your hand. This course will help you through the stuff that C doesn't handle with concepts like Undefined Behaviour, and point out common pitfalls.</p>
+<h2>Hello, World!</h2>
+<p>Let's start with the first program almost everyone writes.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    printf(&quot;hello world&quot;);
+}
+</code></pre>
+<p>There are 3 main things to note already:</p>
+<ol>
+<li>
+<p><strong>The stdio library</strong> is the standard input/output library which we'll use to print text to the console. Think of libraries as a collection of tools that other people have coded so that we don't have to; typically a library is dedicated to one thing and I'm sure you can guess what stdio is dedicated to.</p>
+<p>We import it using the <code>#include</code> preprocessor directive; don't worry, we'll learn more about what preprocessor directives are later! Just know that preprocessor directives start with a <code>#</code> (fun fact: also called an octothorpe), and that <code>#include &lt;stdio.h&gt;</code> tells C to copy all the code from stdio so that we get access to printf and everything else in that library.</p>
+</li>
+<li>
+<p><strong>All C programs start at the main function</strong>; not having a main will lead to an error!</p>
+<pre><code>undefined reference to 'WinMain'
+</code></pre>
+<p><em>The error I receive on my machine</em></p>
+<p>It is similar to Java's main, which you may have already learned about in CS118, in that it is the first block of code run.</p>
+<p>If you don't know what functions are yet, then just think of them as blocks of code. We will discuss them (and why it says int before main) next session!</p>
+</li>
+<li>
+<p><strong>Statements in C</strong>, like using the printf function, end with a semicolon. This helps C read the program as semicolons tell it where one statement ends and another begins.</p>
+</li>
+</ol>
+<p>Okay so we've seen our first C program but how do we actually run it?</p>
+<h2>Running C Code</h2>
+<p>If you're working on DCS machines, then you should have the GNU C compiler installed.</p>
+<p>If not then you should check by running the following command:</p>
+<pre><code class="language-bash">gcc --version
+</code></pre>
+<p><em>gcc stands for GNU Compiler Collection</em></p>
+<p>If you do not have it installed, then follow the installation instructions from <a href="https://gcc.gnu.org/install/">here</a>.</p>
+<h3>What is a compiler?</h3>
+<p>A compiler turns high-level code (such as C) into low-level machine code that the computer can run.</p>
+<p>The idea is that C code is relatively portable so you can write some C code, give that code to multiple different machines and they'll be able to run it using their respective compilers. In practice, since C often talks &quot;directly&quot; to Operating Systems, you will often have to write slightly different C code for different machines for complex programs.</p>
+<blockquote>
+<p>Compiling C code turns it into an exe<br />
+You can run the exe with <code>./TheExe</code></p>
+</blockquote>
+<h3>Compiling and Executing C Code</h3>
+<p>Use gcc to compile C code. As an example:</p>
+<ol>
+<li>create a new file directly under the main folder (named C_Course-Introduction)</li>
+<li>Call it <code>exampleToCompile.c</code></li>
+<li>Fill it with some C code (like the Hello World program from above!)</li>
+<li>Run the command <code>gcc exampleToCompile.c -o exampleProgram</code></li>
+</ol>
+<p><em>Don't worry if it gives you a warning about 'int'; this is something we'll discuss in Session 2!</em></p>
+<p>This should give you an exe named <code>exampleProgram.exe</code> that you can run using:</p>
+<pre><code class="language-bash">./exampleProgram
+</code></pre>
+<p>Note that the <code>-o</code> flag lets you name the exe and, by extension, place it in a specific folder. If you wrote <code>exes/exampleProgram</code> instead of <code>exampleProgram</code>, then it would place the newly created program in the exes folder (assuming this folder exists). This will make it easier to keep track of your files!</p>
+<h3>Exercises for Hello World &amp; Compiling</h3>
+<ol>
+<li>
+<p>Compile one of the C files inside of cFiles (hint: use the last paragraph of Compiling and Executing to help you)</p>
+</li>
+<li>
+<p>Try changing up the text outputted to the console. Note that C does not automatically insert newlines after each usage of printf!</p>
+</li>
+</ol>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    printf(&quot;hello &quot;);
+    printf(&quot;world&quot;);
+}
+</code></pre>
+<p>So the above code outputs:</p>
+<pre><code>hello world
+</code></pre>
+<p><em>Key thing to note is that it's all on one line</em></p>
+<p>If you want a newline, use <code>\n</code> which stands for the newline character.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    printf(&quot;hello\n&quot;);
+    printf(&quot;world&quot;);
+}
+</code></pre>
+<p>Have fun writing your own output!</p>
+<h2>Variables</h2>
+<p>So we can interact with the console using printf but we need a way of handling data; at the very least, we need a way of storing input when we start reading input from the user.</p>
+<p>Enter variables!</p>
+<p>Variables have:</p>
+<ul>
+<li>a <strong>name</strong></li>
+<li>a <strong>type</strong> (which tell you what kind of data is stored)</li>
+<li>a <strong>value</strong>, regardless of if you provide one!</li>
+</ul>
+<p><strong>Declaring with value:</strong></p>
+<pre><code class="language-c">int myVariable = 5;
+</code></pre>
+<p><strong>Declaring without value:</strong></p>
+<pre><code class="language-c">int myVariable;
+</code></pre>
+<p>This is the difference between <strong>declaration</strong> and <strong>initialisation</strong>.</p>
+<p>Both of these declare the variable (they tell C that memory must be reserved for the variable), but only the first initialises the variable with a value. In other words, initialisation is assigning the variable with a value.</p>
+<p>We will see later that the variable that isn't initialised does have a value, but it might not be what you expect!</p>
+<h3>Integer variables</h3>
+<p>First, we'll explore the integer (positive &amp; negative whole number) types!</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int a = 5;
+    int b, c;
+    b = 1;
+    c = -4;
+    printf(&quot;%d\n&quot;, a + b + c);
+}
+</code></pre>
+<p><em>A program with a variety of int initialisations</em></p>
+<p>Output: <code>2</code></p>
+<ol>
+<li>Note the different ways we've initialised the variables a,b,c- all valid!</li>
+<li>Note the use of <code>+</code> as an operation for integers (and numbers in general). You also get <code>-</code> for subtraction, <code>*</code> for multiplication, <code>/</code> for division.</li>
+<li>Notice that we're using printf differently. The previous use of printf was just passing it a piece of text; this current use of printf passes it a formatting piece of text (<code>%d\n</code>), and the values to slot into the format.</li>
+</ol>
+<p>As it's useful to output values in meaningful ways for debugging complex programs and even outputs for simple command-line programs, we'll take a closer look at using printf.</p>
+<h2>Format Specifiers (using printf)</h2>
+<p>The formatting piece of text includes <strong>format specifiers</strong> which begin with <code>%</code> and are replaced by the other values you pass printf; different values (or different ways of displaying values) require different format specifiers.</p>
+<p>For example, <code>%d</code> is used to stand in for a regular old base 10 integer (d for decimal). The pieces of text that we've been passing are called strings and so use <code>%s</code>.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int hours = 11;
+    int minutes = 23;
+    int seconds = 59;
+    printf(&quot;%s - %d : %d : %d \n&quot;, &quot;The Time&quot;, hours, minutes, seconds);
+}
+</code></pre>
+<p><em>Example for time using both %s and %d</em></p>
+<p>Output: <code>The Time - 11 : 23 : 59</code></p>
+<p>What did I mean by &quot;different displays of values&quot;? To explain, I will introduce the <strong>char</strong> which is a smaller int data type, with a tiny range of possible values (-128 to +127), that is typically used to represent characters using ASCII rather than to represent integers.</p>
+<p>For those who don't know, ASCII is a standard encoding of integers to commonly used characters. To show a few:</p>
+<p>| Integer | 65 | 66 | 67 | 97 | 98 | 99 | 33 | 35 |
+|---------|----|----|----|----|----|----|----|----|
+| Character | A | B | C | a | b | c | ! | # |</p>
+<p>Of course the digits must be encoded too; they're encoded by the numbers 48-57.</p>
+<p>| Integer | 48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 |
+|---------|----|----|----|----|----|----|----|----|----|----|
+| Character | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |</p>
+<p>So a char can be displayed as a number using <code>%d</code>, but also as a character using <code>%c</code>.</p>
+<pre><code class="language-c">char a = 101;
+printf(&quot;%c : %d&quot;, a, a);
+</code></pre>
+<p><em>Two different ways of displaying the same value: as the character the char represents, and the corresponding number itself</em></p>
+<p>Output: <code>e : 101</code></p>
+<p>As a char can represent a fraction of the values an int can, an int can also be used to store and display a character since it can be converted into a char very easily. So the following code is also valid:</p>
+<pre><code class="language-c">int b = 100;
+printf(&quot;%c : %d&quot;, b, b);
+</code></pre>
+<p><em>Displaying both representations using an int instead of a char</em></p>
+<p>Output: <code>d : 100</code></p>
+<p>If you're concerned about not being able to display the <code>%</code> symbol, fret not! You can do this using <code>%%</code> which displays a single <code>%</code>.</p>
+<h3>Exercises for using ints and chars</h3>
+<ol>
+<li>There are two groups in a room: 6 UWCS Exec and 20 C Programmers. 4 people in this room are both UWCS Exec and C Programmers. Finish the following C program in order to complete the total number of people in the room:</li>
+</ol>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int exec = 6;
+    int cProgrammers = 20;
+    int both = 4;
+    int total;
+    printf(&quot;The total number of people: %d&quot;, total);
+}
+</code></pre>
+<ol start="2">
+<li>
+<p>Try to spell your name out using chars! If you're feeling ambitious, try doing this using a mixture of capital and lower case letters. Refer to <a href="https://www.asciitable.com/">this</a> if needed.</p>
+<p>To make this easier, you can set the value of a char using the character that it represents. For example:</p>
+<pre><code class="language-c">char capitalE = 'E';
+</code></pre>
+<p><em>Note that characters are wrapped in single quotes</em></p>
+</li>
+<li>
+<p>Timmy wants to display how charged an attack is in his game! Can you help him output the text:</p>
+<pre><code>Laser is charging, at 57% now!
+</code></pre>
+<p>His current code is:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int charge = 57;
+    printf(&quot;FILL ME IN&quot;);
+}
+</code></pre>
+</li>
+</ol>
+<h2>Break from ints: Comments</h2>
+<p>We'll be using comments to help describe and explain bits of code; they don't do anything to the execution of the program, but you should use comments in your own C programs to help the reader quickly understand what is going on (often you in the future)!</p>
+<p>Use <code>//</code> for single-line comments. Let's see how they're used to showcase the increment operator (<code>++</code>), which increases a number by 1.</p>
+<pre><code class="language-c">int main(){
+    int i = 5;
+    
+    i++;
+    printf(&quot;%d\n&quot;, i); // output: 6
+    i++;
+    i++;
+    printf(&quot;%d\n&quot;, i); // output: 8
+}
+</code></pre>
+<p><em>Use of single-line comments</em></p>
+<p>If you need to write something longer, then consider using multi-line comments.</p>
+<p>To start a multi-line comment, use <code>/*</code><br />
+To end a multi-line comment, use <code>*/</code></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+/*
+The main function is the entry-point to the program.
+This program shows the increment operator on integers, and its effect.
+The main purpose of this program is to demonstrate the use of comments.
+(This is a multiline comment)
+*/
+int main(){
+    int i = 5;
+    i++;
+    printf(&quot;%d\n&quot;, i); // output: 6
+    i++;
+    i++;
+    printf(&quot;%d\n&quot;, i); // output: 8
+}
+</code></pre>
+<p><em>The full program with a multi-line comment describing main</em></p>
+<p>Try to practice using single-line and multi-line comments in future exercises to get used to them!</p>
+<h2>Which int to use?</h2>
+<p>There are several ints (char, short, int, long, long long) to choose from, and generally you should choose them based on what they're used for e.g. chars for representing characters, shorts for small integers, longs for large integers.</p>
+<p>For most use cases, the size taken up by an integer is negligible so most people tend to default to an int in a place where a short would be perfectly fine. This only really matters in situations where space is very valuable such as small embedded systems or storing a lot of integers. In fact, it can be beneficial to use an int as your future uses may require a larger range and arithmetic can actually be faster (although usually negligibly) if your machine's native size is 32-bit or 64-bit.</p>
+<p>Despite the idea of C being a portable language, the size (and range) of integer types are machine-dependent; therefore, the C standard only specifies the minimum number of bytes for each type.</p>
+<p>For instance, the minimum number of bytes for an int is 2 however most modern machines use 4.</p>
+<p>| Type | (Minimum) number of bytes | (Minimum) range of values |
+|------|---------------------------|---------------------------|
+| char | 1 | -128 to +127 |
+| short (aka short int) | 2 | -32768 to +32767 |
+| int | 2 | -32768 to +32767 |
+| long (aka long int) | 4 | -2147483648 to +2147483647 |
+| long long (aka long long int) | 8 | -2^63 to +2^63 - 1 |</p>
+<p>The longs even come with their own format specifiers: <code>%ld</code> (for long) and <code>%lld</code> (for long long).</p>
+<h3>Integer Type Exercise: Outputting the size of types</h3>
+<ol>
+<li>
+<p>We know the minimum number of bytes that a type must have, but how do we know what the actual number of bytes is for your machine? Well, wouldn't you like to know you nosy little scamp!</p>
+<p>You can use the <code>sizeof</code> function to do this. For example:</p>
+<pre><code class="language-c">printf(&quot;Size of an int (in bytes): %d\n&quot;, sizeof(int));
+</code></pre>
+<p>Try to write out a C program that prints out the size of all 5 of the above types.</p>
+</li>
+</ol>
+<h2>Overflow/Underflow - What if the number goes above/below the range?</h2>
+<p>Having ranges of values for integers begs the question: &quot;What if you go above or below the range?&quot;</p>
+<p>Going above the range (<strong>overflow</strong>) of an int type will wrap around to the minimum value.
+Similarly, going below the range (<strong>underflow</strong>) of an int type will wrap around to the maximum value.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    char maxVal = 127;
+    maxVal++; // integer overflow!
+    printf(&quot;%d\n&quot;, maxVal); // output: -128
+    
+    char minVal = -128;
+    minVal--; // integer underflow!
+    printf(&quot;%d\n&quot;, minVal); // output: 127
+}
+</code></pre>
+<p><em>Note that the decrement operator (<code>--</code>) subtracts 1 from a number.</em></p>
+<h2>What if I want only positive numbers?</h2>
+<p>The standard integers we are using so far are <strong>signed integers</strong>. As in, they have a sign (positive or negative). If you want to use only the positive range, then you can use <strong>unsigned integers</strong> by adding &quot;unsigned&quot; in the type!</p>
+<p>Since they don't represent negative integers, you roughly double the number of positive integers you can use. For example:</p>
+<pre><code class="language-c">unsigned char beyondTypicalRange = 254;
+printf(&quot;%d\n&quot;, beyondTypicalRange);
+beyondTypicalRange += 3; // Demonstrating overflow
+printf(&quot;%d\n&quot;, beyondTypicalRange); // 1
+</code></pre>
+<p>The range for a typical signed char is -128 to +127 whereas the unsigned char is from 0 to +255.</p>
+<h2>What if I want a guaranteed size?</h2>
+<p>If the exact size of the int is crucial, you can use the stdint (<code>&lt;stdint.h&gt;</code>) library.</p>
+<p>| Type | Number of bytes | Range of values |
+|------|-----------------|-----------------|
+| int8_t | 1 | -2^7 to 2^7 - 1 |
+| int16_t | 2 | -2^15 to 2^15 - 1 |
+| int32_t | 4 | -2^31 to 2^31 - 1 |
+| uint8_t | 1 | 0 to 2^8 - 1 |
+| uint16_t | 2 | 0 to 2^16 - 1 |
+| uint32_t | 4 | 0 to 2^32 - 1 |</p>
+<p>Most modern implementations also provide int64_t and uint64_t.</p>
+<h3>Integer Exercises</h3>
+<ol>
+<li>In variable initialisation, I said that uninitialised variables do have a value but they might not be what you expect! Write a program to declare some variables (without initialising), and see what values they have! If you don't know where to start, here are some uninitialised variables:</li>
+</ol>
+<pre><code class="language-c">int a,b,c,d,e;
+</code></pre>
+<ol start="2">
+<li>
+<p>Once you've finished Exercise 1, have a read through the explanation in the solution file (<code>cFiles/exerciseSolutions/IntegerExercises/Exercise1.c</code>).</p>
+</li>
+<li>
+<p>Write a program which imports stdint and prints the size of each type mentioned above; verify that they really are that size!</p>
+</li>
+</ol>
+<h2>Conditional Logic (If Statements)</h2>
+<p>Doing certain things under certain conditions is essential. The basics of this is the if statement:</p>
+<pre><code class="language-c">if(&lt;condition&gt;){
+    &lt;code to run if condition is true&gt;
+}
+</code></pre>
+<p>An example of its use:</p>
+<pre><code class="language-c">int age = 19; // my current age
+if(age &gt;= 18){
+    printf(&quot;Yay I can vote!&quot;);
+}
+</code></pre>
+<p>We can see that the <code>&lt;condition&gt;</code> - in this case, whether I am older than 18 - is True or False; that is, each <code>&lt;condition&gt;</code> has a value of True or False (called boolean values). However booleans do not have their own type in C; this begs the question: &quot;what actually is <code>&lt;condition&gt;</code>?&quot;</p>
+<p>Well, <strong>False</strong> is actually represented by <code>0</code> and <strong>True</strong> is represented by anything except <code>0</code>. Let's see what value C assigns our condition with.</p>
+<pre><code class="language-c">int age = 19; // my current age
+int isOver18 = (age &gt;= 18); // you can use brackets to ensure things inside happen first
+printf(&quot;True: %d&quot;, isOver18); // 1
+</code></pre>
+<p>Wow that's fun! So 0 is typically used for False and 1 is used for True? This totally isn't foreshadowing anything in Session 2.</p>
+<p>We can already do a lot with just this, but we can make the if statement more powerful with elses:</p>
+<pre><code class="language-c">if(&lt;condition&gt;){
+    &lt;code to run if condition is true&gt;
+}else{
+    &lt;code to run if condition is false&gt;
+}
+</code></pre>
+<p>We can make these even more powerful with else ifs:</p>
+<pre><code class="language-c">if(&lt;condition1&gt;){
+    &lt;code to run if condition1 is true&gt;
+}else if(&lt;condition2&gt;){
+    &lt;code to run if condition1 is false and condition2 is true&gt;
+}else{
+    &lt;code to run if condition1 and condition2 are false&gt;
+}
+</code></pre>
+<h3>If Statement Exercises</h3>
+<ol>
+<li>
+<p>You can combine conditions with <strong>AND</strong> (<code>&amp;&amp;</code>) and <strong>OR</strong> (<code>||</code>), such as in <code>(x &gt; 3) &amp;&amp; (x &lt; 7)</code> (x is between 3 and 7).</p>
+<p>Amy is programming a game and only wants to let a player fire a spell when they're in range (within 3 cells), have enough mana to cast (35 points), and are not on cooldown (2000 milliseconds). Finish her code (and turn it into an executable C program).</p>
+</li>
+</ol>
+<pre><code class="language-c">int mana = 70; // mana points
+int lastCast = 1500; // milliseconds
+int distance = 3; // cells/blocks
+
+// IF SUCCESSFUL
+printf(&quot;Cast spell!&quot;);
+// IF NOT SUCCESSFUL
+printf(&quot;Cannot cast spell!&quot;);
+</code></pre>
+<ol start="2">
+<li>Change your solution to Exercise 1 so that the user knows why they can't cast the spell (did they run out of mana? are they within range?)</li>
+</ol>
+<h2>Representing Decimals: Floating-Point Numbers</h2>
+<p>Before we cover the pure joy of for loops, here's a quick word from our sponsor.</p>
+<blockquote>
+<p>Aren't you tired of having to use boring old integer types? Not even being able to use 0.5 or more exciting numbers? Doing 3/2 and getting 1? It makes no sense!</p>
+<p>Introooooduccingggggg floating-point types!</p>
+<p>These guys will perk your code right up with ✨decimal numbers✨</p>
+<p>We've got <strong>float</strong> for all your basic decimal needs, and if you need a <em>little</em> extra precision then we've got the ultra-premium-deluxe <strong>d o u b l e</strong> type!</p>
+<p>Not enough for you? We've got <em>just</em> the type for you! looooong <strong>double</strong>!</p>
+</blockquote>
+<ul>
+<li><strong>float</strong> can store decimals with precision up to 6-7 decimal places.</li>
+<li><strong>double</strong> can store decimals with precision up to 14-15 decimal places.</li>
+<li><strong>long double</strong> can store decimals with precision up to 18 decimal places.</li>
+</ul>
+<p>These guys also come with their own format specifiers: <code>%f</code> (for floats), <code>%lf</code> (&quot;long float&quot; for doubles), and <code>%Lf</code> (&quot;LONG float&quot; for long doubles).</p>
+<h2>Type Casting</h2>
+<p>When we saw that integers can be displayed as characters, we were actually converting integers to characters first: this is a <strong>type cast</strong>.</p>
+<p>Specifically, it's an <strong>implicit type cast</strong> since you didn't have to tell C to cast; it just does it for you.</p>
+<p>Sometimes, though you'll need to <strong>explicitly type cast</strong>.</p>
+<p><strong>How you write (syntax) for explicit typecasts:</strong></p>
+<pre><code class="language-c">(type) variable
+</code></pre>
+<p>Let's do 3/2 like the ad promised, and we can see why explicit casting is useful:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main(){
+    int a = 3;
+    int b = 2;
+    float result = a/b; // Without explicit casting
+    printf(&quot;%f\n&quot;, result); // 1.000000
+    
+    result = (float) a / (float) b; // With explicit casting
+    printf(&quot;%f\n&quot;, result); // 1.500000
+}
+</code></pre>
+<p>The first example is doing the integer division first and then converting the integer 1 to a float.
+The second example is converting 3 and 2 to floats first, and then doing the division.</p>
+<h3>Floating-Point Exercises</h3>
+<ol>
+<li>
+<p>We've got new types! You know what that means; we've got to check the sizes of them. Write a program to determine the sizes of these new types.</p>
+</li>
+<li>
+<p>You may have noticed that when you output floats, it outputs to a lot of decimal places:</p>
+</li>
+</ol>
+<pre><code class="language-c">float a = 11.0;
+printf(&quot;%f\n&quot;, a); // 11.000000
+</code></pre>
+<p>Sometimes, we only want to output numbers to a certain number of decimal places (dp). We can do this by writing <code>.n</code> where n is the number of dp; we write it between <code>%</code> and rest of the format specifier (in this case, <code>f</code>):</p>
+<pre><code class="language-c">printf(&quot;%.0f\n&quot;, a); // 11
+printf(&quot;%.1f\n&quot;, a); // 11.0
+</code></pre>
+<p>Output the sum, product, and difference to 2 dp of the floats x, y:</p>
+<pre><code class="language-c">float x = 3.14159;
+float y = 2.71828;
+</code></pre>
+<h2>For loops</h2>
+<p>Ever wanted to do something over and over again a set number of times? Or do something again and again until something changes? You can use a for loop for that!</p>
+<pre><code class="language-c">for(&lt;expression/statement 1&gt;; &lt;expression 2&gt;; &lt;expression 3&gt;){
+    &lt;code to repeat&gt;
+}
+</code></pre>
+<ul>
+<li><strong>Expression/Statement 1 (start)</strong> is executed at the start; we'll use it to initialise a variable to keep track of how many times we've looped</li>
+<li><strong>Expression 2 (condition)</strong> is a condition that we check at the start of each loop; if it's true, then we keep looping</li>
+<li><strong>Expression 3 (update)</strong> is executed after each loop (if we decide to keep going)</li>
+</ul>
+<p>For example, the following is a valid for loop:</p>
+<pre><code class="language-c">for(int i = 0; i &lt; 4; i++){
+    printf(&quot;%d &quot;, i);
+}
+</code></pre>
+<p>We call each time we go through the loop an <strong>iteration</strong> and if we're looping, then we are said to be <strong>iterating</strong> through the loop.</p>
+<p>This particular loop iterates 4 times (for i = 0, 1, 2, 3).</p>
+<p><em>Fun fact: Before C99, you had to declare variables outside of the for loop so they'd look like this:</em></p>
+<pre><code class="language-c">int i;
+for(i = 0; i &lt; 4; i++){
+    printf(&quot;%d &quot;, i);
+}
+</code></pre>
+<h3>For Loop Exercises</h3>
+<ol>
+<li>You can increment a variable by more than 1 by doing the following:</li>
+</ol>
+<pre><code class="language-c">int a = 5;
+a = a + 3; // incrementing a by 3
+</code></pre>
+<p>You can write this as:</p>
+<pre><code class="language-c">int a = 5;
+a += 3;
+</code></pre>
+<p>Can you use a for loop and an int n to sum all the integers from 1 to n?</p>
+<ol start="2">
+<li>Can you use a for loop to square then sum all of the even integers from 1 to n?</li>
+</ol>
+<p><em>Hint: We can use += in the update part of the for loop.</em></p>
+<ol start="3">
+<li>You can nest for loops by putting them inside each other, like so:</li>
+</ol>
+<pre><code class="language-c">for (int i = 0; i &lt; 5; i++){
+    for (int j = 0; j &lt; 5; j++){
+        
+    }
+}
+</code></pre>
+<p>So for every value of i, the inside loop will run j times (for j = 0, 1, 2, 3, 4). Therefore, the inside loop will run 25 times.</p>
+<p>Can you write a program to output all the ways to add integers from 1 to a and 1 to b? For example, for a=2 and b=3:</p>
+<pre><code>1 + 1 = 2
+1 + 2 = 3
+1 + 3 = 4
+2 + 1 = 3
+2 + 2 = 4
+2 + 3 = 5
+</code></pre>
+<ol start="4">
+<li>Can you edit your solution to Exercise 3 so that some ways aren't repeated? For example, in the above, <code>1 + 2 = 3</code> is repeated later as <code>2 + 1 = 3</code>.</li>
+</ol>
+<h2>Arrays</h2>
+<p>So far, we've dealt with variables with just one value; this can't really be expanded that far. Imagine having 100 grades and trying to sum them all; it'd be insane to have a variable for each one!</p>
+<p>So we use <strong>arrays</strong> which are a collection of values. The values are stored in contiguous memory locations which is a fancy way of saying that the values are stored right next to each other.</p>
+<p>We can initialise an array in C like this:</p>
+<pre><code class="language-c">int anArray[] = {3, 1, 4, 2, 11};
+</code></pre>
+<p>So the syntax is:</p>
+<pre><code class="language-c">&lt;type&gt; &lt;name&gt;[] = {&lt;value1&gt;, &lt;value2&gt;, &lt;value3&gt;, ...};
+</code></pre>
+<p>But how do we do anything with it?</p>
+<h3>Indexing</h3>
+<p>We call accessing elements of the array <strong>indexing</strong>. We index using <code>[]</code>, but be careful! Indexing in C starts at 0, so the first element in the array is actually the 0th element.</p>
+<pre><code>Array:  [3] [1] [4] [2] [11]
+Index:   0   1   2   3   4
+</code></pre>
+<p><em>A visualisation of the initialised array, with indexes below the cells</em></p>
+<pre><code class="language-c">float yearAverages[] = {71.4, 69.2, 55.4, 80.1, 76.4, 66.3, 48.0, 57.6, 66.1, 62.3};
+printf(&quot;%f\n&quot;, yearAverages[0]); // first grade in array
+float theThirdGrade = yearAverages[2];
+printf(&quot;%f\n&quot;, theThirdGrade);
+yearAverages[1] = 70.0; // changing a value in the array
+</code></pre>
+<p>Of course, we can have arrays of floats or ints or chars; you name it. In fact, we've been secretly dealing with an array of chars this entire time: a <strong>string</strong> is just an array of characters.</p>
+<h3>Declaring</h3>
+<p>We've seen how to initialise an array straight away, but what about if can't write the elements directly into the array. What if they're inserted from a file or some other location (not written directly in the code).</p>
+<p>We can declare the array like so:</p>
+<pre><code class="language-c">int anArray[5];
+</code></pre>
+<p>Note that we have to provide a size for C to give us enough space. If you define the elements straightaway with <code>{}</code>, then C figures out the size of the array for you.</p>
+<h3>Size of an Array</h3>
+<p>We can use <code>sizeof()</code> on arrays, and it gives us the size taken up by the entire array. Since an array contains elements of the same type, we can use this to determine the number of elements in a given array by doing <code>sizeof(array)/sizeof(array[0])</code>. Can you explain why?</p>
+<p>We will cover arrays more deeply next week when we explore pointers.</p>
+<h3>Bound-Checking</h3>
+<p>As mentioned, C does not hold your hand and has minimal guard rails so it does not check if you're trying to index the array out of bounds. For example:</p>
+<pre><code class="language-c">int primes[] = {2, 3, 5, 7, 11}; // 5 elements
+printf(&quot;%d\n&quot;, primes[8]); // this is allowed!
+</code></pre>
+<p><em>Printing the 9th element despite there only being 5 elements in the array</em></p>
+<p>C allows this, but this will result in <strong>undefined behaviour</strong>. As mentioned in the solution to Integer Exercise 1, undefined behaviour is unpredictable and not to be trusted; it is undefined because the C standard does not define what happens when it occurs. The standard does not define what happens when you index an array out of bounds.</p>
+<p>What will usually happens is that some random value will be printed because C will fetch a value from memory (in the example, where the 9th element actually would be stored if the array had it) but it won't be from the array. In the worst case, the whole program will crash because we don't have permission to access that memory (or it doesn't exist!) This is a <strong>segmentation fault</strong>.</p>

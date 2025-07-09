@@ -12,4 +12,6 @@
     {lesson.title}
 </h1>
 
-<div id="lesson-content"></div>
+<div class="text-lg font-medium dark:text-white">
+    {@html content["main-body"]}
+</div>

@@ -1,6 +1,6 @@
 <script>
-    import SignoutBtn from "$lib/components/signout-btn.svelte";
-    import BackBtn from "$lib/components/back-btn.svelte";
+    import SignoutBtn from "$lib/components/signout_btn.svelte";
+    import BackBtn from "$lib/components/back_btn.svelte";
 
     import InteractiveLesson from "./interactive_lesson.svelte";
     import StaticLesson from "./static_lesson.svelte";
@@ -14,7 +14,7 @@
     <title>{data.lesson.title} | UWCS Academy</title>
 </svelte:head>
 
-<div class="min-h-screen px-100 py-10 bg-[url('/bg-particles.png')]">
+<div class="min-h-screen px-100 py-10 bg-[url('/bg-particles.png')] bg-blend-lighten">
     <BackBtn back_path="/course/{data.course.id}" />
     <SignoutBtn />
 

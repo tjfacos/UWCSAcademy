@@ -99,13 +99,7 @@ class Scanner:
         
         lesson_path = self.courses_path.joinpath(course, lesson)
         print(f"Accessing {lesson_path} ...")
-        
-        # Remove existing html files
-        print(f"Removing .html files...")
-        for page in lesson_path.glob('*.html'):
-            print(f"-> {page}")
-            lesson_path.joinpath(page).unlink()
-        
+                
         # Generate new html files
         print("Generating new .html files...")
         for page in lesson_path.glob('*.md'):
@@ -116,8 +110,6 @@ class Scanner:
                 f.write(html)
             
             print(f"-> {page} --> {str(page) + ".html"}")
-
-            
 
         # Open config.json
         lesson_config = None
