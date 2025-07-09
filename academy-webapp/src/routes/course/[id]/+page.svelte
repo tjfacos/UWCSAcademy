@@ -37,12 +37,12 @@
     </div>
 
     <div class="w-full">
-        <h1 class="font-black text-6xl dark:text-white w-full mt-20 mb-10 pt-5 border-t-10 border-red-400">
+        <h1 class="font-black text-6xl dark:text-white w-full mt-20 mb-10 pt-5 border-t-10 border-[#ef4f4e]">
             Lessons
         </h1>
         <div class="grid grid-cols-1 gap-8">
         {#each data.lessons as lesson}
-            <Lesson course_id={data.course.id} lesson_id={lesson.id} title={lesson.title} />
+            <Lesson lesson_id={lesson.id} title={lesson.title} />
         {/each}
     </div>
     </div>

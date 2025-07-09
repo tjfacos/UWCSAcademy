@@ -89,3 +89,16 @@ export async function getLessonsByCourseID(course_id) {
             )
         ).orderBy(lessons_tbl.order)
 }
+
+export async function getLesson(id) {
+    let lesson = await db
+        .select()
+        .from(lessons_tbl)
+        .where(
+            and(
+                eq(lessons_tbl.id, id), 
+                eq(lessons_tbl.hidden, false)
+            )
+        )
+    return lesson.at(0)
+}

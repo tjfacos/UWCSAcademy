@@ -24,7 +24,7 @@
     .montserrat-normal { 
         font-family: "Montserrat", sans-serif;
         font-optical-sizing: auto;
-        font-weight: 100;
+        font-weight: normal;
         font-style: normal;
     }
 </style>
