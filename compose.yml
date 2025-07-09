@@ -33,8 +33,6 @@ services:
     image: nginx:1.29.0
     volumes:
       - ./content:/usr/share/nginx/html
-    ports:
-      - "9000:80"
 
   # Database
   db:
