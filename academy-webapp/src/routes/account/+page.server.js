@@ -12,7 +12,8 @@ export async function load({ parent }) {
         throw redirect(308, "/")
     
     usr = await getUser(session.user.email)
-    const _super = usr.is_super
+    console.log(usr)
+    const _super = usr != undefined && usr.is_super
 
     console.log(usr)
 
