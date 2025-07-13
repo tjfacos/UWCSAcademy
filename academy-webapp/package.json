@@ -30,12 +30,15 @@
 	"dependencies": {
 		"@auth/core": "^0.40.0",
 		"@auth/sveltekit": "^1.10.0",
+		"@codemirror/lang-javascript": "^6.2.4",
 		"@tailwindcss/vite": "^4.1.10",
 		"axios": "^1.10.0",
+		"codemirror": "^6.0.2",
 		"dotenv": "^17.0.1",
 		"drizzle-orm": "^0.44.2",
 		"js-cookie": "^3.0.5",
 		"monaco-editor": "^0.52.2",
-		"pg": "^8.16.3"
+		"pg": "^8.16.3",
+		"svelte-codemirror-editor": "^1.4.1"
 	}
 }

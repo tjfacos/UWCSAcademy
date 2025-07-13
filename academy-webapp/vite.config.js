@@ -6,5 +6,11 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		tailwindcss(),
-	]
+	],
+	optimizeDeps: {
+        exclude: [
+			"svelte-codemirror-editor", 
+			"codemirror", 
+			"@codemirror/language-javascript" /* ... */],
+    },
 });
