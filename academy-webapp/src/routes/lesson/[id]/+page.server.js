@@ -46,7 +46,7 @@ export async function load({ parent, params }) {
 
     const course = await getCourse(lesson.course)
 
-    console.log("CONTENT FETCH FROM FILE SERVER TEST")
+    // console.log("CONTENT FETCH FROM FILE SERVER TEST")
 
     let main_html = await getCourseFiles(`${course.directory}/${lesson.directory}/${lesson.markdown}.html`)
     
@@ -54,7 +54,7 @@ export async function load({ parent, params }) {
         "main-body": styleRawHTML(main_html, lesson_content_tailwind_style)
     }
 
-    console.log(content["main-body"])
+    // console.log(content["main-body"])
 
     return { lesson, course, content }
     

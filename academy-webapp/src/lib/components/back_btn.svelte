@@ -6,7 +6,7 @@
     <a href={back_path} aria-label="Back">
         <button
             aria-label="Back Button"
-            class="p-3 rounded-xl shadow-md border border-gray-200 dark:border-yellow-400 bg-blue-600 dark:bg-yellow-300 flex items-center justify-center transition-all hover:shadow-xl hover:scale-110 space-x-2"
+            class="h-12 p-3 rounded-xl shadow-md border border-gray-200 dark:border-yellow-400 bg-blue-600 dark:bg-yellow-300 flex items-center justify-center transition-all hover:shadow-xl hover:scale-110 space-x-2"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
