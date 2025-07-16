@@ -8,9 +8,6 @@ export default defineConfig({
 		tailwindcss(),
 	],
 	optimizeDeps: {
-        exclude: [
-			"svelte-codemirror-editor", 
-			"codemirror", 
-			"@codemirror/language-javascript" /* ... */],
+        exclude: []
     },
 });
