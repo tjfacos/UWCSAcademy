@@ -28,7 +28,7 @@
         <!-- Buffer -->
         <div class="w-full h-25"></div>
 
-        <div id="editor-container" class="w-1/2 float-right h-[80vh]"></div>
+        <div id="editor-container" class="w-1/2 float-right h-[90vh] px-5 py-5 mr-5 rounded-md bg-[#282c34] overflow-auto"></div>
 
     </div>
 </div>
