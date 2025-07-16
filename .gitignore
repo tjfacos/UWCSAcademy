@@ -29,3 +29,6 @@ vite.config.ts.timestamp-*
 
 # Python
 __pycache__
+
+#Working Files
+scratchpad.txt

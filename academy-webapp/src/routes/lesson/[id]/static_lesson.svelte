@@ -20,7 +20,7 @@
         {lesson.title}
     </h1>
     
-    <div class="text-lg font-medium dark:text-white">
+    <div class="text-lg font-medium">
         {@html content["main-body"]}
     </div>
 
