@@ -1,34 +1,58 @@
 <script>
-    
     import BackBtn from "$lib/components/back_btn.svelte";
     import { createEditor } from "$lib/components/editor";
     import { onMount } from "svelte";
-    
+
+    import Split from "split.js";
+
     let { course, lesson, content } = $props();
-    
+
     let editor;
-    
+
     onMount(() => {
+        Split(["#left-split", "#right-split"], {
+            minSize: 500
+        });
+        Split(["#top-right-split", "#bottom-right-split"], {
+            direction: 'vertical'
+        })
         editor = createEditor(document.getElementById("editor-container"));
-    })
+    });
 
 </script>
 
 <div class="min-h-screen">
-    <!-- Header (Bounds the back and theme buttons in the UI)-->
-    <div
-        class="fixed top-0 right-0 w-full bg-gray-300 dark:bg-gray-800 border-b-5 border-yellow-300 dark:border-[#ef4f4e] z-100"
-        style="height: calc(var(--spacing, 8px) * 20 + 5px);"
-    >
-        <BackBtn back_path="/course/{course.id}" />
-    </div>
+    <BackBtn back_path="/course/{course.id}" />
 
     <div class="w-full h-full">
-        
-        <!-- Buffer -->
-        <div class="w-full h-25"></div>
 
-        <div id="editor-container" class="w-1/2 float-right h-[90vh] px-5 py-5 mr-5 rounded-md bg-[#282c34] overflow-auto"></div>
+        <div id="main-split-container" class="w-full h-full split">
+            <div id="left-split"></div>
+            <div id="right-split" class="min-h-screen max-h-screen bg-[#282c34]">
+                <div id="top-right-split" class="overflow-auto">
+                    <div id="editor-container"></div>
+                </div>
+                <div id="bottom-right-split"></div>
+            </div>
+        </div>
 
     </div>
+
+    <style>
+        .split {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .gutter {
+            background-color: #eee;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+
+        .gutter.gutter-horizontal {
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+            cursor: col-resize;
+        }
+    </style>
 </div>
