@@ -34,12 +34,13 @@ import {
 import { lintKeymap } from "@codemirror/lint"
 
 // Theme
-import { oneDark } from "@codemirror/theme-one-dark"
+import {dracula} from 'thememirror';
 
 // Language-Specific
 import { javascript } from "@codemirror/lang-javascript"
 
 const view_config = [
+    dracula,
     // TODO: How we choose a language
     javascript(),
     // A line number gutter
@@ -91,9 +92,7 @@ const view_config = [
         ...completionKeymap,
         // Keys related to the linter system
         ...lintKeymap
-    ]),
-    // OneDark theme
-    oneDark,
+    ])
 ]
 
 
@@ -102,5 +101,6 @@ export function createEditor(parent, initial_content = "// Placeholder") {
         doc: initial_content,
         parent: parent,
         extensions: view_config,
+        style: "height: 100%; width: 100%; min-height: 0; min-width: 0;"
     })
 }

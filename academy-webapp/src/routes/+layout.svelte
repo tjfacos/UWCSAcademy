@@ -24,8 +24,8 @@
         class="min-h-screen flex flex-col justify-between bg-[url(/bg-particles.png)]"
     ></div>
 {:else}
-    <div class="min-h-screen flex flex-col">
-        <div id="contents" class="dark montserrat-normal dark:bg-gray-900 flex-1 flex flex-col">
+    <div class="min-h-screen flex flex-col min-h-0 min-w-0">
+        <div id="contents" class="dark montserrat-normal dark:bg-gray-900 flex-1 flex flex-col min-h-0 min-w-0">
             <LightDarkBtn />
             {@render children()}
         </div>
