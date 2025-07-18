@@ -16,7 +16,7 @@
 <!-- Landing Page -->
 
 <div
-  class="min-h-screen flex flex-col justify-between bg-[url('/bg-particles.png')]"
+  class="flex-1 flex flex-col justify-between bg-[url('/bg-particles.png')]"
 >
   <main class="flex flex-1 items-center justify-center flex-col gap-8">
     <img

@@ -12,7 +12,7 @@
     <title>{data.course.title} | UWCS Academy</title>
 </svelte:head>
 
-<div class="min-h-screen px-100 py-10 bg-[url('/bg-particles.png')]">
+<div class="flex-1 px-100 py-10 bg-[url('/bg-particles.png')]">
     <BackBtn back_path="/dashboard" />
     <SignoutBtn />
 

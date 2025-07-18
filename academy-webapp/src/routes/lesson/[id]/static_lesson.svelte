@@ -6,7 +6,7 @@
 
 </script>
 
-<div class="min-h-screen px-100 py-10 bg-[url('/bg-particles.png')] bg-blend-lighten">
+<div class="flex-1 px-100 py-10 bg-[url('/bg-particles.png')] bg-blend-lighten">
     <BackBtn back_path="/course/{course.id}" />
     <SignoutBtn />
 

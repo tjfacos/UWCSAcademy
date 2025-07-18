@@ -21,14 +21,14 @@
 
 </script>
 
-<div class="min-h-screen">
+<div class="flex-1 flex flex-col">
     <BackBtn back_path="/course/{course.id}" />
 
-    <div class="w-full h-full">
+    <div class="w-full flex-1 flex flex-col">
 
-        <div id="main-split-container" class="w-full h-full split">
+        <div id="main-split-container" class="w-full flex-1 flex flex-col split">
             <div id="left-split"></div>
-            <div id="right-split" class="min-h-screen max-h-screen bg-[#282c34]">
+            <div id="right-split" class="flex-1 bg-[#282c34]">
                 <div id="top-right-split" class="overflow-auto">
                     <div id="editor-container"></div>
                 </div>
